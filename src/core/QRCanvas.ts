@@ -7,7 +7,7 @@ import defaultOptions, { RequiredOptions } from './QROptions.js';
 import gradientTypes from '../constants/gradientTypes.js';
 import { QRCode, Gradient, FilterFunction, Options } from '../types';
 import getMode from '../tools/getMode.js';
-import { Canvas, CanvasRenderingContext2D, ExportFormat, RenderOptions, loadImage, Image } from 'skia-canvas';
+import { Canvas, CanvasRenderingContext2D, ExportFormat, RenderOptions, loadImage, Image, CanvasGradient } from 'skia-canvas';
 import qrcode from 'qrcode-generator';
 import { promises as fs } from 'fs';
 import mergeDeep from '../tools/merge.js';
@@ -479,11 +479,21 @@ export default class QRCanvas {
    *  Create a data url with the content of the qr code
    *
    * @param format Supported types: "png" | "jpg" | "jpeg" | "pdf" | "svg"
+   */
+  async toDataUrl(format: ExportFormat = 'png'): Promise<string> {
+    await this.created;
+    return this._canvas.toDataURL(format);
+  }
+
+  /**
+   *  Create a url with the content of the qr code
+   *
+   * @param format Supported types: "png" | "jpg" | "jpeg" | "pdf" | "svg"
    * @param options export options see https://github.com/samizdatco/skia-canvas#tobufferformat-page-matte-density-quality-outline
    */
-  async toDataUrl(format: ExportFormat = 'png', options?: RenderOptions): Promise<string> {
+  async toUrl(format: ExportFormat = 'png', options?: RenderOptions): Promise<string> {
     await this.created;
-    return this._canvas.toDataURL(format, options);
+    return this._canvas.toURL(format, options);
   }
 
   /**

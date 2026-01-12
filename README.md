@@ -21,14 +21,14 @@ together.
 ### Installation
 
 ```
-npm install @loskir/styled-qr-code-node
+npm install @sn1perdog/styled-qr-code-node
 ```
 
 ### Usage
 
 ```typescript
-import {QRCodeCanvas} from '@loskir/styled-qr-code-node';
-const {QRCodeCanvas} = require('@loskir/styled-qr-code-node'); // or CommonJS
+import {QRCodeCanvas} from '@sn1perdog/styled-qr-code-node';
+const {QRCodeCanvas} = require('@sn1perdog/styled-qr-code-node'); // or CommonJS
 
 const qrCode = new QRCodeCanvas({
   data: 'My text or trl',
